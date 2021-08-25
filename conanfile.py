@@ -18,12 +18,13 @@ class QqqConan(ConanFile):
         self.copy('*.so*', dst='bin', src='lib')
 
     def configure(self):
+        self.options["qt"].shared = True
         self.options["qt"].qtsvg = True
         self.options["qt"].qtdeclarative = True
         self.options["qt"].qttools = True
 
     def requirements(self):
-        self.requires("qt/5.15.2@bincrafters/stable")
+        self.requires("qt/5.15.2")
         self.requires("boost/1.69.0")
 
     def package(self):
