@@ -3,8 +3,13 @@ from conans import ConanFile, CMake, tools
 
 
 class QqqConan(ConanFile):
+    name = "qqq"
+    version = "0.1.0"
     settings = "os", "compiler", "build_type", "arch"
     generators = [("cmake"), ("cmake_find_package"), ("qt")]
+
+    def export_sources(self):
+        self.copy("*")
 
     def build(self):
         cmake = CMake(self)
@@ -28,4 +33,4 @@ class QqqConan(ConanFile):
         self.requires("boost/1.69.0")
 
     def package(self):
-        self.copy("*.exe")
+        self.copy("*", dst="bin", src="bin")
